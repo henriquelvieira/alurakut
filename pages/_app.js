@@ -2,6 +2,9 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { AlurakutStyles } from '../src/lib/AlurakutCommons';
 
 const GlobalStyle = createGlobalStyle`
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
   /* Reset CSS (Necolas Reset CSS <3) */
   * {
     margin: 0;
@@ -10,8 +13,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: sans-serif;
-    background-color: #D9E6F6;
+    font-family: 'Poppins', sans-serif;
+    background-color: #282a36;
   }
 
   #__next {
