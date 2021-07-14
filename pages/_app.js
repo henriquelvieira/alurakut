@@ -1,6 +1,15 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { AlurakutStyles } from '../src/lib/AlurakutCommons';
 
+
+const theme = {
+  colors: {
+    primary: '#282a36',
+    secondary: '#44475a'
+
+  }
+}
+
 const GlobalStyle = createGlobalStyle`
 
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap');
@@ -14,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Poppins', sans-serif;
-    background-color: #282a36;
+    background-color: ${theme.colors.primary};
   }
 
   #__next {
@@ -31,12 +40,6 @@ const GlobalStyle = createGlobalStyle`
 
   ${AlurakutStyles}
 `
-
-const theme = {
-  colors: {
-    primary: 'red',
-  },
-}
 
 export default function App({ Component, pageProps }) {
   return (

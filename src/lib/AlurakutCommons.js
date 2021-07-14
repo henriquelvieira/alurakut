@@ -140,7 +140,8 @@ AlurakutMenu.Wrapper = styled.header`
     }
     input {
       color: #ffffff;
-      background: #6272a4;
+      background: #44475a;
+      //background: #6272a4;
       padding: 10px 42px;
       border: 0;
       background-image: url(${`${BASE_URL}/icons/search.svg`});
@@ -150,7 +151,7 @@ AlurakutMenu.Wrapper = styled.header`
       font-size: 12px;
       ::placeholder {
         color: #ffffff;
-        opacity: 1;
+        opacity: 2;
       }
     } 
   }
