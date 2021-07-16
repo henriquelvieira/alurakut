@@ -25,6 +25,8 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [React](https://reactjs.org)
 - [Next](https://nextjs.org/)
 - [Styled Components](https://styled-components.com/)
+- [GraphQL](https://graphql.org/);
+- [DatoCMS](https://www.datocms.com/);
 ## 🚀 Iniciando o projeto
 
 Clone o projeto e acesso o diretório.
