@@ -1,5 +1,8 @@
 import {React, useState, useEffect} from 'react';
-import MainGrid from '../src/components/MainGrid'
+import nookies from 'nookies';
+import jwt from 'jsonwebtoken';
+
+import MainGrid from '../src/components/MainGrid';
 import Box from '../src/components/Box'
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons';
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
@@ -53,10 +56,12 @@ function ProfileRelationsBox ({
 }
 
 
-export default function Home() {
+export default function Home(props) {
+
+  const usuarioAleatorio = props.githubUser;
   
-  const TOKEN = process.env.NEXT_PUBLIC_TOKEN_READ_ONLY;
-  const usuarioAleatorio = 'henriquelvieira';
+  
+  const TOKEN_DATOCMS = process.env.NEXT_PUBLIC_TOKEN_READ_ONLY;
 
   const [comunidades, setComunidades] = useState([]);
   const [seguidores, setSeguidores]   = useState([]);
@@ -75,7 +80,7 @@ export default function Home() {
     fetch('https://graphql.datocms.com/', {
       method: 'POST',
       headers: {
-        'Authorization': '39516e0292db30152cde7ae0677259',
+        'Authorization': TOKEN_DATOCMS,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
@@ -246,3 +251,36 @@ export default function Home() {
     </>
   )
 }
+
+
+export async function getServerSideProps(context) {
+
+  const cookies = nookies.get(context)
+  const token = cookies.USER_TOKEN;
+  const { isAuthenticated } = await fetch('https://alurakut.vercel.app/api/auth', {
+    headers: {
+        Authorization: token
+      }
+  }).then((resposta) => resposta.json())
+
+  console.log(isAuthenticated);
+
+  if(!isAuthenticated) {
+    
+    return {
+      
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      }
+    }
+  }
+
+  const { githubUser } = jwt.decode(token);
+
+  return {
+    props: {
+      githubUser
+    }, // will be passed to the page component as props
+  }
+} 
